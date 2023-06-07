@@ -1,0 +1,485 @@
+{
+	"swagger": "2.0",
+	"info": {
+	  "version": "1.0",
+	  "title": "STUDENT API",
+	  "contact": {}
+	},
+	"host": "localhost:7000",
+	"basePath": "/api",
+	"securityDefinitions": {},
+	"schemes": [
+	  "http"
+	],
+	"consumes": [
+	  "application/json"
+	],
+	"produces": [
+	  "application/json"
+	],
+	"paths": {
+	  "/product/add": {
+		"post": {
+		  "summary": "Add product",
+		  "tags": [
+			"Product"
+		  ],
+		  "operationId": "Addproduct",
+		  "deprecated": false,
+		  "produces": [
+			"application/json"
+		  ],
+		  "parameters": [
+			{
+			  "name": "Authorization",
+			  "in": "header",
+			  "required": false,
+			  "default": "Bearer {token}",
+			  "type": "string"
+			},
+			{
+			  "name": "Body",
+			  "in": "body",
+			  "required": true,
+			  "description": "",
+			  "schema": {
+				"$ref": "#/definitions/AddproductRequest"
+			  }
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "",
+			  "headers": {}
+			}
+		  }
+		}
+	  },
+	  "/product/get": {
+		"get": {
+		  "summary": "Get product",
+		  "tags": [
+			"Product"
+		  ],
+		  "operationId": "Getproduct",
+		  "deprecated": false,
+		  "produces": [
+			"application/json"
+		  ],
+		  "parameters": [
+			{
+			  "name": "Authorization",
+			  "in": "header",
+			  "required": false,
+			  "default": "Bearer {token}",
+			  "type": "string"
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "",
+			  "headers": {}
+			}
+		  }
+		}
+	  },
+	  "/product/update": {
+		"patch": {
+		  "summary": "Update",
+		  "tags": [
+			"Product"
+		  ],
+		  "operationId": "Update",
+		  "deprecated": false,
+		  "produces": [
+			"application/json"
+		  ],
+		  "parameters": [
+			{
+			  "name": "Authorization",
+			  "in": "header",
+			  "required": false,
+			  "default": "Bearer {token}",
+			  "type": "string"
+			},
+			{
+			  "name": "id",
+			  "in": "query",
+			  "required": true,
+			  "type": "string",
+			  "description": ""
+			},
+			{
+			  "name": "Body",
+			  "in": "body",
+			  "required": true,
+			  "description": "",
+			  "schema": {
+				"$ref": "#/definitions/UpdateRequest"
+			  }
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "",
+			  "headers": {}
+			}
+		  }
+		}
+	  },
+	  "/product/delete": {
+		"delete": {
+		  "summary": "Delete",
+		  "tags": [
+			"Product"
+		  ],
+		  "operationId": "Delete",
+		  "deprecated": false,
+		  "produces": [
+			"application/json"
+		  ],
+		  "parameters": [
+			{
+			  "name": "Authorization",
+			  "in": "header",
+			  "required": false,
+			  "default": "Bearer {token}",
+			  "type": "string"
+			},
+			{
+			  "name": "id",
+			  "in": "query",
+			  "required": true,
+			  "type": "string",
+			  "description": ""
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "",
+			  "headers": {}
+			}
+		  }
+		}
+	  },
+	  "/user/login": {
+		"post": {
+		  "summary": "Login",
+		  "tags": [
+			"User"
+		  ],
+		  "operationId": "Login",
+		  "deprecated": false,
+		  "produces": [
+			"application/json"
+		  ],
+		  "parameters": [
+			{
+			  "name": "Body",
+			  "in": "body",
+			  "required": true,
+			  "description": "",
+			  "schema": {
+				"$ref": "#/definitions/LoginRequest"
+			  }
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "",
+			  "headers": {}
+			}
+		  },
+		  "security": []
+		}
+	  },
+	  "/user/getUser": {
+		"get": {
+		  "summary": "Get your details",
+		  "tags": [
+			"User"
+		  ],
+		  "operationId": "Getyourdetails",
+		  "deprecated": false,
+		  "produces": [
+			"application/json"
+		  ],
+		  "parameters": [
+			{
+			  "name": "Authorization",
+			  "in": "header",
+			  "required": false,
+			  "default": "Bearer {token}",
+			  "type": "string"
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "",
+			  "headers": {}
+			}
+		  }
+		}
+	  },
+	  "/user/getUserForAdmin": {
+		"get": {
+		  "summary": "getUserForAdmin",
+		  "tags": [
+			"Admin"
+		  ],
+		  "operationId": "getUserForAdmin",
+		  "deprecated": false,
+		  "produces": [
+			"application/json"
+		  ],
+		  "parameters": [
+			{
+			  "name": "adminEmail",
+			  "in": "query",
+			  "required": true,
+			  "type": "string",
+			  "description": ""
+			},
+			{
+			  "name": "adminPassword",
+			  "in": "query",
+			  "required": true,
+			  "type": "string",
+			  "description": ""
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "",
+			  "headers": {}
+			}
+		  },
+		  "security": []
+		}
+	  },
+	  "/user/register": {
+		"post": {
+		  "summary": "register",
+		  "tags": [
+			"Admin"
+		  ],
+		  "operationId": "register",
+		  "deprecated": false,
+		  "produces": [
+			"application/json"
+		  ],
+		  "parameters": [
+			{
+			  "name": "Body",
+			  "in": "body",
+			  "required": true,
+			  "description": "",
+			  "schema": {
+				"$ref": "#/definitions/registerrequest"
+			  }
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "",
+			  "headers": {}
+			}
+		  },
+		  "security": []
+		}
+	  },
+	  "/user/delete": {
+		"delete": {
+		  "summary": "delete",
+		  "tags": [
+			"Admin"
+		  ],
+		  "operationId": "delete",
+		  "deprecated": false,
+		  "produces": [
+			"application/json"
+		  ],
+		  "parameters": [
+			{
+			  "name": "id",
+			  "in": "query",
+			  "required": true,
+			  "type": "string",
+			  "description": ""
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "",
+			  "headers": {}
+			}
+		  },
+		  "security": []
+		}
+	  }
+	},
+	"definitions": {
+	  "AddproductRequest": {
+		"title": "AddproductRequest",
+		"example": {
+		  "productName": "Pen",
+		  "price": "20",
+		  "category": "pen",
+		  "shopName": "aaa",
+		  "mobile": "123412123",
+		  "discount": "20"
+		},
+		"type": "object",
+		"properties": {
+		  "productName": {
+			"type": "string"
+		  },
+		  "price": {
+			"type": "string"
+		  },
+		  "category": {
+			"type": "string"
+		  },
+		  "shopName": {
+			"type": "string"
+		  },
+		  "mobile": {
+			"type": "string"
+		  },
+		  "discount": {
+			"type": "string"
+		  }
+		},
+		"required": [
+		  "productName",
+		  "price",
+		  "category",
+		  "shopName",
+		  "mobile",
+		  "discount"
+		]
+	  },
+	  "UpdateRequest": {
+		"title": "UpdateRequest",
+		"example": {
+		  "productName": "Mobile1",
+		  "price": "20000",
+		  "category": "clodsdsdth23",
+		  "shopName": "bbb",
+		  "mobile": "123412123",
+		  "discount": "30"
+		},
+		"type": "object",
+		"properties": {
+		  "productName": {
+			"type": "string"
+		  },
+		  "price": {
+			"type": "string"
+		  },
+		  "category": {
+			"type": "string"
+		  },
+		  "shopName": {
+			"type": "string"
+		  },
+		  "mobile": {
+			"type": "string"
+		  },
+		  "discount": {
+			"type": "string"
+		  }
+		},
+		"required": [
+		  "productName",
+		  "price",
+		  "category",
+		  "shopName",
+		  "mobile",
+		  "discount"
+		]
+	  },
+	  "LoginRequest": {
+		"title": "LoginRequest",
+		"example": {
+		  "email": "example@gmail.com",
+		  "password": "1234"
+		},
+		"type": "object",
+		"properties": {
+		  "email": {
+			"type": "string"
+		  },
+		  "password": {
+			"type": "string"
+		  }
+		},
+		"required": [
+		  "email",
+		  "password"
+		]
+	  },
+	  "registerrequest": {
+		"title": "registerrequest",
+		"example": {
+		  "userName": "Yash1",
+		  "email": "yash1@gmail.com",
+		  "mobile": "2343545",
+		  "gender": "male",
+		  "password": "1234",
+		  "confirmPassword": "1234",
+		  "adminEmail": "",
+		  "adminPassword": ""
+		},
+		"type": "object",
+		"properties": {
+		  "userName": {
+			"type": "string"
+		  },
+		  "email": {
+			"type": "string"
+		  },
+		  "mobile": {
+			"type": "string"
+		  },
+		  "gender": {
+			"type": "string"
+		  },
+		  "password": {
+			"type": "string"
+		  },
+		  "confirmPassword": {
+			"type": "string"
+		  },
+		  "adminEmail": {
+			"type": "string"
+		  },
+		  "adminPassword": {
+			"type": "string"
+		  }
+		},
+		"required": [
+		  "userName",
+		  "email",
+		  "mobile",
+		  "gender",
+		  "password",
+		  "confirmPassword",
+		  "adminEmail",
+		  "adminPassword"
+		]
+	  }
+	},
+	"security": [],
+	"tags": [
+	  {
+		"name": "Product"
+	  },
+	  {
+		"name": "User"
+	  },
+	  {
+		"name": "Admin"
+	  }
+	]
+  }
