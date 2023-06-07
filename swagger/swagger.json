@@ -5,7 +5,7 @@
 	  "title": "STUDENT API",
 	  "contact": {}
 	},
-	"host": "localhost:7000",
+	"host": "https://fierce-red-armadillo.cyclic.app/",
 	"basePath": "/api",
 	"securityDefinitions": {},
 	"schemes": [
