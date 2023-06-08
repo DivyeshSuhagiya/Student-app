@@ -6,7 +6,7 @@
     "contact": {}
   },
   "host": "oscar-student-api.cyclic.app",
-  "basePath": "/api",
+  "basePath": "/api/user",
   "securityDefinitions": {},
   "schemes": [
     "https",
