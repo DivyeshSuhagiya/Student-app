@@ -5,7 +5,7 @@
 	  "title": "STUDENT API",
 	  "contact": {}
 	},
-	"host": "https://fierce-red-armadillo.cyclic.app/",
+	"host": "https://agile-tan-fawn.cyclic.app/api-docs",
 	"basePath": "/api",
 	"securityDefinitions": {},
 	"schemes": [
