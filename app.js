@@ -9,13 +9,13 @@ const jwt = require("jsonwebtoken");
 app.use(express.json());
 let http = require('http');
 let fs = require('fs');
-
+let cors = require('cors');
 
 const { API_PORT } = process.env;
 const port = process.env.PORT || API_PORT;
 
 const routes = require('./route/index.js')
-
+app.use(cors())
 app.use('/api', routes)
 const swaggerJson = require('./swagger/swagger.json')
 const swaggerUi = require("swagger-ui-express");
