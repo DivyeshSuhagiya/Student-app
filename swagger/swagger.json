@@ -5,11 +5,11 @@
 	  "title": "STUDENT API",
 	  "contact": {}
 	},
-	"host": "https://agile-tan-fawn.cyclic.app",
+	"host": "agile-tan-fawn.cyclic.app",
 	"basePath": "/api",
 	"securityDefinitions": {},
 	"schemes": [
-	  "http"
+	  "https"
 	],
 	"consumes": [
 	  "application/json"
