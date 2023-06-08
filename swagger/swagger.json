@@ -5,7 +5,7 @@
 	  "title": "STUDENT API",
 	  "contact": {}
 	},
-	"host": "agile-tan-fawn.cyclic.app",
+	"host": "oscar-student-api.cyclic.app",
 	"basePath": "/api",
 	"securityDefinitions": {},
 	"schemes": [
