@@ -9,7 +9,8 @@
 	"basePath": "/api",
 	"securityDefinitions": {},
 	"schemes": [
-	  "http"
+	  "http", "https"
+		
 	],
 	"consumes": [
 	  "application/json"
