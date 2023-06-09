@@ -17,7 +17,8 @@ const port = process.env.PORT || API_PORT;
 const routes = require('./route/index.js')
 
 app.use(fileUpload({
-  useTempFiles:true
+  useTempFiles:true,
+  tempFileDir: "/tmp",
 }))
 
 app.use('/api', routes)
