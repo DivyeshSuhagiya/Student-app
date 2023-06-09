@@ -8,7 +8,7 @@ var UserSchema = new mongoose.Schema(
       trim: true,
     },
     mobile: {
-      type: String,
+      type: Number,
       required: true,
       trim: true,
     },
@@ -27,6 +27,46 @@ var UserSchema = new mongoose.Schema(
     },
     password: {
       type: String,
+      required: true,
+      trim: true,
+    },
+    qualification:{
+      type: String,
+      required: true,
+      trim: true
+    },
+    city : {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    state : {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    country : {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    postalCode : {
+      type: Number,
+      required: true,
+      trim: true,
+    },
+    address : {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    officeContact : {
+      type: Number,
+      required: true,
+      trim: true,
+    },
+    birthDate:{
+      type: Date,
       required: true,
       trim: true,
     },
