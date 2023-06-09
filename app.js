@@ -25,7 +25,8 @@ app.use('/api', routes)
 const swaggerJson = require('./swagger/swagger.json')
 const swaggerUi = require("swagger-ui-express");
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerJson));
-
+var publicDir = require('path').join(__dirname,'/public');
+app.use(express.static(publicDir));
 // let handleRequest = (request, response) => {
 //     response.writeHead(200, {
 //         'Content-Type': 'text/html'
