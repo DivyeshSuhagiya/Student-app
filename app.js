@@ -18,7 +18,7 @@ const routes = require('./route/index.js')
 
 app.use(fileUpload({
   useTempFiles:true,
-  tempFileDir: "/tmp",
+  tempFileDir: "/tmp"
 }))
 
 app.use('/api', routes)
