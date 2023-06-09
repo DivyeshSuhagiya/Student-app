@@ -9,7 +9,7 @@
 	"basePath": "/api",
 	"securityDefinitions": {},
 	"schemes": [
-	  "https"
+	  "http"
 	],
 	"consumes": [
 	  "application/json"
@@ -29,6 +29,9 @@
 		  "produces": [
 			"application/json"
 		  ],
+		  "consumes": [
+			"multipart/form-data"
+		  ],
 		  "parameters": [
 			{
 			  "name": "Authorization",
@@ -38,13 +41,71 @@
 			  "type": "string"
 			},
 			{
-			  "name": "Body",
-			  "in": "body",
+			  "name": "productName",
+			  "in": "formData",
 			  "required": true,
-			  "description": "",
-			  "schema": {
-				"$ref": "#/definitions/AddproductRequest"
-			  }
+			  "type": "string",
+			  "description": ""
+			},
+			{
+			  "name": "price",
+			  "in": "formData",
+			  "required": true,
+			  "type": "integer",
+			  "format": "int32",
+			  "description": ""
+			},
+			{
+			  "name": "category",
+			  "in": "formData",
+			  "required": true,
+			  "type": "string",
+			  "description": ""
+			},
+			{
+			  "name": "shopName",
+			  "in": "formData",
+			  "required": true,
+			  "type": "string",
+			  "description": ""
+			},
+			{
+			  "name": "mobile",
+			  "in": "formData",
+			  "required": true,
+			  "type": "integer",
+			  "format": "int32",
+			  "description": ""
+			},
+			{
+			  "name": "discount",
+			  "in": "formData",
+			  "required": true,
+			  "type": "integer",
+			  "format": "int32",
+			  "description": ""
+			},
+			{
+			  "name": "discription",
+			  "in": "formData",
+			  "required": true,
+			  "type": "string",
+			  "description": ""
+			},
+			{
+			  "name": "colors",
+			  "in": "formData",
+			  "required": true,
+			  "type": "string",
+			  "description": ""
+			},
+			{
+			  "name": "productImage",
+			  "in": "formData",
+			  "required": true,
+			  "type": "file",
+			  "format": "file",
+			  "description": ""
 			}
 		  ],
 		  "responses": {
@@ -94,6 +155,9 @@
 		  "produces": [
 			"application/json"
 		  ],
+		  "consumes": [
+			"multipart/form-data"
+		  ],
 		  "parameters": [
 			{
 			  "name": "Authorization",
@@ -110,13 +174,71 @@
 			  "description": ""
 			},
 			{
-			  "name": "Body",
-			  "in": "body",
+			  "name": "productName",
+			  "in": "formData",
 			  "required": true,
-			  "description": "",
-			  "schema": {
-				"$ref": "#/definitions/UpdateRequest"
-			  }
+			  "type": "string",
+			  "description": ""
+			},
+			{
+			  "name": "price",
+			  "in": "formData",
+			  "required": true,
+			  "type": "integer",
+			  "format": "int32",
+			  "description": ""
+			},
+			{
+			  "name": "category",
+			  "in": "formData",
+			  "required": true,
+			  "type": "string",
+			  "description": ""
+			},
+			{
+			  "name": "shopName",
+			  "in": "formData",
+			  "required": true,
+			  "type": "string",
+			  "description": ""
+			},
+			{
+			  "name": "mobile",
+			  "in": "formData",
+			  "required": true,
+			  "type": "integer",
+			  "format": "int32",
+			  "description": ""
+			},
+			{
+			  "name": "discount",
+			  "in": "formData",
+			  "required": true,
+			  "type": "integer",
+			  "format": "int32",
+			  "description": ""
+			},
+			{
+			  "name": "discription",
+			  "in": "formData",
+			  "required": true,
+			  "type": "string",
+			  "description": ""
+			},
+			{
+			  "name": "colors",
+			  "in": "formData",
+			  "required": true,
+			  "type": "string",
+			  "description": ""
+			},
+			{
+			  "name": "productImage",
+			  "in": "formData",
+			  "required": true,
+			  "type": "file",
+			  "format": "file",
+			  "description": ""
 			}
 		  ],
 		  "responses": {
@@ -302,6 +424,64 @@
 			  "description": ""
 			},
 			{
+			  "name": "birthDate",
+			  "in": "formData",
+			  "required": true,
+			  "type": "string",
+			  "description": ""
+			},
+			{
+			  "name": "city",
+			  "in": "formData",
+			  "required": true,
+			  "type": "string",
+			  "description": ""
+			},
+			{
+			  "name": "state",
+			  "in": "formData",
+			  "required": true,
+			  "type": "string",
+			  "description": ""
+			},
+			{
+			  "name": "country",
+			  "in": "formData",
+			  "required": true,
+			  "type": "string",
+			  "description": ""
+			},
+			{
+			  "name": "postalCode",
+			  "in": "formData",
+			  "required": true,
+			  "type": "integer",
+			  "format": "int32",
+			  "description": ""
+			},
+			{
+			  "name": "officeContact",
+			  "in": "formData",
+			  "required": true,
+			  "type": "integer",
+			  "format": "int32",
+			  "description": ""
+			},
+			{
+			  "name": "qualification",
+			  "in": "formData",
+			  "required": true,
+			  "type": "string",
+			  "description": ""
+			},
+			{
+			  "name": "address",
+			  "in": "formData",
+			  "required": true,
+			  "type": "string",
+			  "description": ""
+			},
+			{
 			  "name": "password",
 			  "in": "formData",
 			  "required": true,
@@ -394,86 +574,6 @@
 	  }
 	},
 	"definitions": {
-	  "AddproductRequest": {
-		"title": "AddproductRequest",
-		"example": {
-		  "productName": "Pen",
-		  "price": "20",
-		  "category": "pen",
-		  "shopName": "aaa",
-		  "mobile": "123412123",
-		  "discount": "20"
-		},
-		"type": "object",
-		"properties": {
-		  "productName": {
-			"type": "string"
-		  },
-		  "price": {
-			"type": "string"
-		  },
-		  "category": {
-			"type": "string"
-		  },
-		  "shopName": {
-			"type": "string"
-		  },
-		  "mobile": {
-			"type": "string"
-		  },
-		  "discount": {
-			"type": "string"
-		  }
-		},
-		"required": [
-		  "productName",
-		  "price",
-		  "category",
-		  "shopName",
-		  "mobile",
-		  "discount"
-		]
-	  },
-	  "UpdateRequest": {
-		"title": "UpdateRequest",
-		"example": {
-		  "productName": "Mobile1",
-		  "price": "20000",
-		  "category": "clodsdsdth23",
-		  "shopName": "bbb",
-		  "mobile": "123412123",
-		  "discount": "30"
-		},
-		"type": "object",
-		"properties": {
-		  "productName": {
-			"type": "string"
-		  },
-		  "price": {
-			"type": "string"
-		  },
-		  "category": {
-			"type": "string"
-		  },
-		  "shopName": {
-			"type": "string"
-		  },
-		  "mobile": {
-			"type": "string"
-		  },
-		  "discount": {
-			"type": "string"
-		  }
-		},
-		"required": [
-		  "productName",
-		  "price",
-		  "category",
-		  "shopName",
-		  "mobile",
-		  "discount"
-		]
-	  },
 	  "LoginRequest": {
 		"title": "LoginRequest",
 		"example": {
