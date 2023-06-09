@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const { MONGO_URL } = process.env;
-//mongoose.set("strictQuery", false);
+
 exports.connect = () => {
         mongoose.connect(MONGO_URL , {
         useNewUrlParser : true,
