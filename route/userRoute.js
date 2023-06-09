@@ -1,6 +1,9 @@
 const userController = require('../Controllers/userController')
 const express = require("express");
 const router = express.Router();
+const multer = require('multer')
+const path = require('path')
+
 
 router.post('/register' , (req,res) => userController.user.register(req,res))
 router.post('/login' , (req,res) => userController.user.login(req,res))
