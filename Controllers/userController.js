@@ -1,19 +1,16 @@
 const USER = require("../model/user");
 const bcrypt = require("bcrypt");
-const e = require("express");
 const jwt = require("jsonwebtoken");
-let mainAdminPassword = 'divyesh@myapi';
-let mainAdminEmail = 'divyesh@gmail.com';
+let mainAdminPassword = process.env.ADMIN_PASSWORD;
+let mainAdminEmail = process.env.ADMIN_EMAIL;
 const cloudinary = require('cloudinary').v2;
 
-
 cloudinary.config({
-  cloud_name: 'dmiredxmg',
-  api_key: '888365438485776',
-  api_secret: 'n-NOMrmhnuh0xTBOLLbdVTyxMbk',
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET,
   secure: true
 });
-
 
 exports.user = {
   getUser: async (req, res) => {
@@ -131,7 +128,7 @@ exports.user = {
         })
       }
 
-      var token = jwt.sign({user_Id : userInfo._id}, process.env.TOKEN_KEY, {
+      var token = jwt.sign({user_Id : userInfo._id, userName : userInfo.userName}, process.env.TOKEN_KEY, {
         expiresIn: "1h",
       });
       return res.status(200).send({
@@ -145,9 +142,13 @@ exports.user = {
   },
   register: async function (req, res) {
     try {
-      let { userName, email, mobile, gender, password, confirmPassword, adminEmail , adminPassword } = req.body;
+      let { userName, email, mobile, gender,city , state, country, postalCode, address, officeContact, birthDate,qualification, password, confirmPassword, adminEmail , adminPassword } = req.body;
       const file = req.files.userImage;
-      if (!(userName && email && mobile && gender && password && confirmPassword && file)) {
+      console.log(file)
+      if(file.size > 1000000){
+        return res.json({  isSuccess : false, error : "Image size must be less than 1 MB!!" });
+      }
+      if (!(userName && email && mobile && gender && city && state && country && postalCode && address && officeContact && birthDate && qualification && password && confirmPassword && file)) {
         return res.json({  isSuccess : false, error : "All input is required" });
       }
       if(!(adminEmail && adminPassword)){
@@ -169,10 +170,10 @@ exports.user = {
           error : "Password and Confirm Password must be same"
         })
       }
-      cloudinary.uploader.upload(file.tempFilePath, async(err, result) => { 
+      cloudinary.uploader.upload(file.tempFilePath,{ folder: "userImage" }, async(err, result) => { 
         bcrypt.hash(confirmPassword, 10).then(async (hash) => {
           password = hash;
-          const user = await USER.create({ userName, email, mobile, gender, password, userImage : result.url, imageId : result.public_id });
+          const user = await USER.create({ userName, email, mobile, gender,city , state, country, postalCode, address, officeContact, qualification, birthDate, password, userImage : result.url, imageId : result.public_id });
 
           if(user){
             return res.status(200).json({
