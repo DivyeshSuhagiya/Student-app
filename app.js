@@ -10,10 +10,10 @@ app.use(express.json());
 let http = require('http');
 let fs = require('fs');
 const fileUpload = require('express-fileupload')
-
+const cors = require('cors')
 const { API_PORT } = process.env;
 const port = process.env.PORT || API_PORT;
-
+app.use(cors())
 const routes = require('./route/index.js')
 
 app.use(fileUpload({
