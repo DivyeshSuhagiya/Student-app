@@ -2,6 +2,11 @@ var mongoose = require("mongoose");
 
 var productSchema = new mongoose.Schema(
   {
+    userId : {
+      type: String,
+      trim: true,
+      required :true
+    },
     productName: {
       type: String,
       trim: true,
