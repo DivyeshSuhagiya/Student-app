@@ -8,7 +8,7 @@ var productSchema = new mongoose.Schema(
       required :true
     },
     price: {
-      type: String,
+      type: Number,
       trim: true,
       required :true
     },
@@ -42,24 +42,30 @@ var productSchema = new mongoose.Schema(
       trim: true,
       required :true
     },
+    quantity:{
+      type : Number,
+      trim: true,
+    },
+    totalPrice:{
+      type : Number,
+      trim: true,
+    },
     productImage : {
       type : String,
       trim: true,
       default : '',
       required :true
     },
+    orderComplateTime : {
+      type : Date,
+      trim: true
+    },
     imageId: { 
       type: String,
       trim: true,
       default: "",
       required :true
-    },
-    userId : {
-      type : String,
-      trim : true,
-      default :'',
-      required :true
-    },
+    }
   },
   {
     timestamps: true,
