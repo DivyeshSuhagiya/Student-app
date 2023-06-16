@@ -129,7 +129,7 @@ exports.user = {
       }
 
       var token = jwt.sign({user_Id : userInfo._id, userName : userInfo.userName}, process.env.TOKEN_KEY, {
-        expiresIn: "5h",
+        expiresIn: "1h",
       });
       return res.status(200).send({
         isSuccess : true,
