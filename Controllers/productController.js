@@ -21,7 +21,7 @@ exports.product = {
             isSuccess: false,
           });
         } else {
-          const product = await PRODUCT.find({ userId: decoded.user_Id });
+          const product = await PRODUCT.find({ userId: decoded.user_Id }); 
           return res.json({
             message: "Your data get successfull",
             data: product,
