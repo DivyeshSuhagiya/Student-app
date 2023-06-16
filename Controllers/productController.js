@@ -44,7 +44,6 @@ exports.product = {
         return res.json({  isSuccess : false, error : "All input is required" });
       }
 
-      
       var token = req.headers.authorization?.split(" ")[1];
       jwt.verify(token, process.env.TOKEN_KEY, async function (err, decoded) {
         if (err) {
@@ -57,13 +56,18 @@ exports.product = {
           cloudinary.uploader.upload(file.tempFilePath,{ folder: "productImage" }, async(err, result) => { 
             let allProduct = await PRODUCT.find({userId : decoded.user_Id})
             if(allProduct?.length >= 20){
-              await PRODUCT.deleteMany({userId : decoded.user_Id})
+              allProduct?.forEach(async(x) => {
+                const destroyImage = await cloudinary.uploader.destroy(x.imageId , { folder: "productImage" });
+                  if(destroyImage.result == 'ok'){
+                    await PRODUCT.findOneAndRemove({userId : decoded.user_Id})
+                  }
+              })
             }
             const product = await PRODUCT.create({ productName, price, category, shopName, mobile, discount, discription, colors,
               userId: decoded.user_Id, productImage : result.url, imageId : result.public_id
             });
   
-            if(product){
+            if(true){
               return res.status(200).json({
                 message: "Product uploaded successfully!!",
                 data: product,
@@ -100,7 +104,6 @@ exports.product = {
           // let PRO = PRODUCT.find({userId : decoded.user_Id});
           const userProduct = await PRODUCT.findOne({_id : req.query.id, userId : decoded.user_Id});
           const destroyImage = await cloudinary.uploader.destroy(userProduct.imageId , { folder: "productImage" });
-          console.log(destroyImage)
           if(destroyImage.result == 'ok'){
             cloudinary.uploader.upload(file.tempFilePath,{ folder: "productImage" }, async(err, result) => {
               const product = await PRODUCT.updateOne({_id : req.query.id, userId : decoded.user_Id} , {productName, price, category, shopName, mobile, discount, discription, colors,

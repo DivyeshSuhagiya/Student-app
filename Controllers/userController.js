@@ -129,7 +129,7 @@ exports.user = {
       }
 
       var token = jwt.sign({user_Id : userInfo._id, userName : userInfo.userName}, process.env.TOKEN_KEY, {
-        expiresIn: "1h",
+        expiresIn: "5h",
       });
       return res.status(200).send({
         isSuccess : true,
@@ -144,7 +144,6 @@ exports.user = {
     try {
       let { userName, email, mobile, gender,city , state, country, postalCode, address, officeContact, birthDate,qualification, password, confirmPassword, adminEmail , adminPassword } = req.body;
       const file = req.files.userImage;
-      console.log(file)
       if(file.size > 1000000){
         return res.json({  isSuccess : false, error : "Image size must be less than 1 MB!!" });
       }
