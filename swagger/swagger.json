@@ -571,6 +571,234 @@
 		  },
 		  "security": []
 		}
+	  },
+	  "/addtocart/get": {
+		"get": {
+		  "summary": "Get",
+		  "tags": [
+			"Add To Cart"
+		  ],
+		  "operationId": "Get",
+		  "deprecated": false,
+		  "produces": [
+			"application/json"
+		  ],
+		  "parameters": [
+			{
+			  "name": "Authorization",
+			  "in": "header",
+			  "required": false,
+			  "default": "Bearer {token}",
+			  "type": "string"
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "",
+			  "headers": {}
+			}
+		  }
+		}
+	  },
+	  "/addtocart/add": {
+		"post": {
+		  "summary": "Add",
+		  "tags": [
+			"Add To Cart"
+		  ],
+		  "operationId": "Add",
+		  "deprecated": false,
+		  "produces": [
+			"application/json"
+		  ],
+		  "parameters": [
+			{
+			  "name": "Authorization",
+			  "in": "header",
+			  "required": false,
+			  "default": "Bearer {token}",
+			  "type": "string"
+			},
+			{
+			  "name": "Body",
+			  "in": "body",
+			  "required": true,
+			  "description": "",
+			  "schema": {
+				"$ref": "#/definitions/AddRequest"
+			  }
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "",
+			  "headers": {}
+			}
+		  }
+		}
+	  },
+	  "/addtocart/remove": {
+		"delete": {
+		  "summary": "Remove",
+		  "tags": [
+			"Add To Cart"
+		  ],
+		  "operationId": "Remove",
+		  "deprecated": false,
+		  "produces": [
+			"application/json"
+		  ],
+		  "parameters": [
+			{
+			  "name": "Authorization",
+			  "in": "header",
+			  "required": false,
+			  "default": "Bearer {token}",
+			  "type": "string"
+			},
+			{
+			  "name": "productId",
+			  "in": "query",
+			  "required": true,
+			  "type": "string",
+			  "description": ""
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "",
+			  "headers": {}
+			}
+		  }
+		}
+	  },
+	  "/order/get": {
+		"get": {
+		  "summary": "Get",
+		  "tags": [
+			"Order"
+		  ],
+		  "operationId": "Get1",
+		  "deprecated": false,
+		  "produces": [
+			"application/json"
+		  ],
+		  "parameters": [
+			{
+			  "name": "Authorization",
+			  "in": "header",
+			  "required": false,
+			  "default": "Bearer {token}",
+			  "type": "string"
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "",
+			  "headers": {}
+			}
+		  }
+		}
+	  },
+	  "/order/add": {
+		"post": {
+		  "summary": "Add",
+		  "tags": [
+			"Order"
+		  ],
+		  "operationId": "PostAdd",
+		  "deprecated": false,
+		  "produces": [
+			"application/json"
+		  ],
+		  "parameters": [
+			{
+			  "name": "Authorization",
+			  "in": "header",
+			  "required": false,
+			  "default": "Bearer {token}",
+			  "type": "string"
+			},
+			{
+			  "name": "Body",
+			  "in": "body",
+			  "required": true,
+			  "description": "",
+			  "schema": {
+				"$ref": "#/definitions/AddRequest1"
+			  }
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "",
+			  "headers": {}
+			}
+		  }
+		}
+	  },
+	  "/order/remove": {
+		"delete": {
+		  "summary": "Remove",
+		  "tags": [
+			"Order"
+		  ],
+		  "operationId": "DeleteRemove",
+		  "deprecated": false,
+		  "produces": [
+			"application/json"
+		  ],
+		  "parameters": [
+			{
+			  "name": "Authorization",
+			  "in": "header",
+			  "required": false,
+			  "default": "Bearer {token}",
+			  "type": "string"
+			},
+			{
+			  "name": "productId",
+			  "in": "query",
+			  "required": true,
+			  "type": "string",
+			  "description": ""
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "",
+			  "headers": {}
+			}
+		  }
+		}
+	  },
+	  "/orderCompleted/get": {
+		"get": {
+		  "summary": "Get",
+		  "tags": [
+			"Order Completed"
+		  ],
+		  "operationId": "Get2",
+		  "deprecated": false,
+		  "produces": [
+			"application/json"
+		  ],
+		  "parameters": [
+			{
+			  "name": "Authorization",
+			  "in": "header",
+			  "required": false,
+			  "default": "Bearer {token}",
+			  "type": "string"
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "",
+			  "headers": {}
+			}
+		  }
+		}
 	  }
 	},
 	"definitions": {
@@ -593,6 +821,41 @@
 		  "email",
 		  "password"
 		]
+	  },
+	  "AddRequest": {
+		"title": "AddRequest",
+		"example": {
+		  "productId": "6483225cbfd0e3041ab6a5c6"
+		},
+		"type": "object",
+		"properties": {
+		  "productId": {
+			"type": "string"
+		  }
+		},
+		"required": [
+		  "productId"
+		]
+	  },
+	  "AddRequest1": {
+		"title": "AddRequest1",
+		"example": {
+		  "productId": "648aab45c38b3ea03125c1ea",
+		  "quantity": "7"
+		},
+		"type": "object",
+		"properties": {
+		  "productId": {
+			"type": "string"
+		  },
+		  "quantity": {
+			"type": "string"
+		  }
+		},
+		"required": [
+		  "productId",
+		  "quantity"
+		]
 	  }
 	},
 	"security": [],
@@ -605,6 +868,15 @@
 	  },
 	  {
 		"name": "Admin"
+	  },
+	  {
+		"name": "Add To Cart"
+	  },
+	  {
+		"name": "Order"
+	  },
+	  {
+		"name": "Order Completed"
 	  }
 	]
   }
