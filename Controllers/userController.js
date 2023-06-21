@@ -131,10 +131,21 @@ exports.user = {
       var token = jwt.sign({user_Id : userInfo._id, userName : userInfo.userName}, process.env.TOKEN_KEY, {
         expiresIn: "1h",
       });
-      return res.status(200).send({
-        isSuccess : true,
-        message: "You are logged in successfully!",
-        token : token
+      jwt.verify(token, process.env.TOKEN_KEY, async function (err, decoded) {
+        if (err) {
+          return res.json({
+            message: "Auth token not found",
+            error: err,
+            isSuccess: false,
+          });
+        } else {
+          return res.status(200).send({
+            isSuccess : true,
+            message: "You are logged in successfully!",
+            token : token,
+            expiresIn : decoded.exp
+          });
+        }
       });
     } catch (error) {
       return res.json({error: 'Something wrong!!'});
