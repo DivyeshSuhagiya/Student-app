@@ -26,7 +26,7 @@ exports.addtocart = {
           return res.json({
             message: "Your data get successfull",
             isSuccess: true,
-            data: await PRODUCT.find({ '_id': { $in: carts.cartProducts } })
+            data: await PRODUCT.find({ '_id': { $in: carts.cartProducts } }) || []
           });
         }
       });
