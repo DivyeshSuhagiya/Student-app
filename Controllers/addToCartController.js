@@ -23,10 +23,11 @@ exports.addtocart = {
           });
         } else {
           const carts = await ADD_TO_CART.findOne({ userId: decoded.user_Id });
+          let data = carts ? await PRODUCT.find({ '_id': { $in: carts.cartProducts } }) : []
           return res.json({
             message: "Your data get successfull",
             isSuccess: true,
-            data: await PRODUCT.find({ '_id': { $in: carts.cartProducts } }) || []
+            data: data 
           });
         }
       });
