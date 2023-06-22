@@ -19,7 +19,7 @@ function addHours(date, hours) {
 }
 
 // function addHours(date, hours) {
-//   date.setTime(date.getTime() + 10000);
+//   date.setTime(date.getTime() +10000);
 
 //   return date;
 // }
@@ -50,20 +50,12 @@ exports.order = {
                 },
                 { safe: true }
             );
-
-            if(completedRecords.length > 0){
-              if(user){
-                  await ORDER_COMPLETED.updateOne({ userId: decoded.user_Id }, { $push : { orderCompletedProducts: {$each: completedRecords} } })
-              }else{
-                await ORDER_COMPLETED.create({ userId: decoded.user_Id , orderCompletedProducts: completedRecords })
-              }
-            }
           }
-          const orders = await ORDER.find({ userId: decoded.user_Id });
+          const orders = await ORDER.findOne({ userId: decoded.user_Id });
           return res.json({
             message: "Your data get successfull",
             isSuccess: true,
-            order : orders  
+            data : orders?.orderProducts ?? []
           });
         }
       });
@@ -95,13 +87,6 @@ exports.order = {
             product['quantity'] = quantity;
             product['totalPrice'] = Number(product['price']) * Number(quantity);
             product['orderComplateTime'] = addHours(new Date(), 1);
-          }
-          let exist = await ORDER.findOne({'orderProducts._id' : {"$in": [productId]}}) 
-          if(exist){
-            return res.json({
-              message: "This product is already in cart.",
-              isSuccess: true
-            });
           }
           if(user){
             await ORDER.updateOne({ _id: user._id }, { $push: { orderProducts: product } })
