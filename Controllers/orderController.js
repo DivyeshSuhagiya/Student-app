@@ -84,22 +84,31 @@ exports.order = {
           const user = await ORDER.findOne({ userId: decoded.user_Id });
           let product = await PRODUCT.findOne({ _id: productId });
           if(product){
-            product['quantity'] = quantity;
-            product['totalPrice'] = Number(product['price']) * Number(quantity);
-            product['orderComplateTime'] = addHours(new Date(), 1);
+              product['quantity'] = quantity;
+              product['totalPrice'] = Number(product['price']) * Number(quantity);
+              product['orderComplateTime'] = addHours(new Date(), 1);
+          }else{
+            return res.json({
+                  message: "Now you cannot buy this product because product is not available.",
+                  isSuccess: false,
+                });
           }
           if(user){
-            await ORDER.updateOne({ _id: user._id }, { $push: { orderProducts: product } })
-              return res.json({
-                message: "Product is added.",
-                isSuccess: true
-              });
-          }else{
-            await ORDER.create({userId : decoded.user_Id , orderProducts : [product]})
-              return res.json({
+            if(product){
+                await ORDER.updateOne({ _id: user._id }, { $push: { orderProducts: product } })
+                return res.json({
                   message: "Product is added.",
                   isSuccess: true
-              });
+                });
+              }
+          }else{
+            if(product){
+              await ORDER.create({userId : decoded.user_Id , orderProducts : [product]})
+                return res.json({
+                    message: "Product is added.",
+                    isSuccess: true
+                });
+            }
           }
         
         }
